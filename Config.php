@@ -3,17 +3,20 @@
 class Config{
     private $conn;
     //Fungsi
-    function koneksi(){
+    public function koneksi(){
         $this->conn = new mysqli("localhost","root","","db_toko_buah");
 
         if($this->conn->connect_error){
-            die("Gagal");
+            error_log('Connection error: ' . $this->conn->connect_error);
         }
-        return $this->conn;
+        else{
+            return $this->conn;
+            
+        }
+        
 
     }
     
 }
-$koneksi = new Config();
-$koneksi->koneksi()
-;
+// $koneksi = new Config();
+// $koneksi->koneksi();

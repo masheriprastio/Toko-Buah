@@ -15,14 +15,12 @@ class Product{
         $sql = "SELECT * FROM products";
         $hasil = $this->conn->query($sql);
         $products = [];
-        if($hasil->num_rows > 0){
-            while($row = $hasil->fetch_assoc()){
+        if ($hasil->num_rows > 0) {
+            while ($row = $hasil->fetch_assoc()) {
                 $products[] = $row;
-                
             }
-            return $products;
-
         }
+        return $products;
     }
 }
 $product = new Product();
