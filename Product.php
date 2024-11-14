@@ -31,10 +31,13 @@ class Product{
     }
     public function delete($id)
     {
-        $sql = "DELETE FROM products WHERE productid=$id";
+        $sql = "DELETE FROM products WHERE product_id=$id";
         if ($this->conn->query($sql) === TRUE) {
             echo "Record deleted successfully";
             $this->conn->close(); // Close connection header("Location: index.php"); exit(); } else { echo "Error: " . $sql . "<br>" . $this->conn->error; } }
         }
     }
 }
+//Hapus Data
+$siProduk = new Product(null,null,null,null,null,null);
+$siProduk->delete(2);
