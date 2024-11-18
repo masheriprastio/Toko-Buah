@@ -1,8 +1,9 @@
 <?php
 require_once('Config.php');
-class Product{
+class Product
+{
     private $conn, $productid, $productname, $productdesc, $productprice, $productstockquan, $produkimg;
-    public function __construct($id, $product_name, $description, $price, $stock_quantity, $image_url,)
+    public function __construct($id = null, $product_name = '', $description = '', $price = 0, $stock_quantity = 0, $image_url = '')
     {
         $this->productid = $id;
         $this->productname = $product_name;
@@ -12,13 +13,27 @@ class Product{
         $this->produkimg = $image_url;
         $config = new Config();
         $this->conn = $config->koneksi();
-
     }
-    public function index(){
+    public function index()
+    {
         header("Location:../../Toko-Buah/view/index.php");
         // echo "Tes";
     }
-    public function getData(){
+    public function save()
+    {
+
+        $sql = "INSERT INTO products (product_name, description, price, stock_quantity, image_url) VALUES ('$this->productname', '$this->productdesc', '$this->productprice', '$this->productstockquan', '$this->produkimg')";
+        if ($this->conn->query($sql) === TRUE) {
+            $_SESSION['success_message'] = "Data produk berhasil ditambahkan!";
+            header("Location: displaydata.php");
+            window . alert("Data Berhasil Ditambah");
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $this->conn->error;
+        }
+    }
+    public function getData()
+    {
         $sql = "SELECT * FROM products";
         $hasil = $this->conn->query($sql);
         $products = [];
@@ -29,6 +44,15 @@ class Product{
         }
         return $products;
     }
+    public function getById($id)
+    {
+        $sql = "SELECT * FROM products WHERE product_id=$id";
+        $result = $this->conn->query($sql);
+        $product = $result->fetch_assoc();
+        $this->conn->close();
+        // return $product;
+        var_dump($product);
+    }
     public function delete($id)
     {
         $sql = "DELETE FROM products WHERE product_id=$id";
@@ -38,6 +62,6 @@ class Product{
         }
     }
 }
-//Hapus Data
-$siProduk = new Product(null,null,null,null,null,null);
-$siProduk->delete(2);
+
+$pedit = new Product();
+$pedit->getById("1");
