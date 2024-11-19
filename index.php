@@ -39,13 +39,14 @@ $products = new Product(null, '', '', '', '', '');
                         <td><?php echo $product['stock_quantity']; ?></td>
                         <td align="center"><img src="assets/img/<?php echo $product['image_url']; ?>" alt="Product Image" width="100"></td>
                         <td>
-                            <a href=edit_data_product.php?id=<?php echo $product['product_id']; ?> class="btn btn-warning">Edit</a>
+                            <a href=update_data_product.php?id=<?php echo $product['product_id']; ?> class="btn btn-warning">Edit</a>
+                            <a href=delete_data_product.php?id=<?php echo $product['product_id']; ?> class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus produk ini?');">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a href="add_data.php
+        <a href="add_data_product.php
         " class="btn btn-primary">Tambah Produk Baru</a>
     </div>
 </body>

@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"]== "POST"){
 <body>
     <div class="container mt-5">
         <h2 class="text-center mb-4">Index Tambah Produk Baru</h2>
-        <form action="add_data.php" method="POST">
+        <form action="add_data_product.php" method="POST">
             <div class="form-group">
                 <label for="product_name">Nama Produk</label>
                 <input type="text" class="form-control" id="product_name" name="product_name" required>
